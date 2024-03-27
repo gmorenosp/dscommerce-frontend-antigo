@@ -23,3 +23,24 @@ export function addProduct(product : ProductDTO) {
 export function clearCart() {
     cartRepositoy.clear();
 }
+
+export function increaseItem(productId: number) {
+    const cart = cartRepositoy.get();
+    const item = cart.items.find(x => x.productId === productId);
+    if (item) {
+        item.quantity++
+        cartRepositoy.save(cart);        
+    }    
+}
+
+export function decreaseItem(productId: number) {
+    const cart = cartRepositoy.get();
+    const item = cart.items.find(x => x.productId === productId);
+    if (item) {
+        item.quantity--
+        if (item.quantity < 1) {
+            cart.items = cart.items.filter(x => x.productId !== productId);
+        }
+        cartRepositoy.save(cart);        
+    }    
+}
