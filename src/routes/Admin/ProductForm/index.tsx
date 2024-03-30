@@ -117,12 +117,13 @@ export default function ProductForm() {
 
         const request = isEditing
             ? productService.updateRequest(requestBody)
-            : productService.insertRequest(requestBody)
+            : productService.insertRequest(requestBody);
 
         request
             .then(() => {
                 navigate("/admin/products")
-            }).catch(error => {
+            })
+            .catch(error => {
                 const newInputs = forms.setBackendErros(formData, error.response.data.fieldMessages);
                 setFormData(newInputs);
             });
