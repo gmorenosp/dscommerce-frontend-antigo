@@ -19,7 +19,7 @@ export default function ProductForm() {
     const navigate = useNavigate();
 
     const isEditing = params.productId !== 'create';
-    
+
     const [categories, setCategories] = useState<CategoryDTO[]>([]);
 
     const [formData, setFormData] = useState<any>({
@@ -107,6 +107,7 @@ export default function ProductForm() {
         if (forms.hasAnyInvalid(formDataValidated)) {
             setFormData(formDataValidated);
             return;
+            
         }
 
         const requestBody = forms.toValues(formData);
