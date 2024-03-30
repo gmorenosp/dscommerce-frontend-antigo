@@ -18,7 +18,8 @@ export class OrderItemDTO {
     public name: string,
     public price: number,
     public imgUrl: string
-  ) {}
+  ) { }
+
   get subTotal(): number {
     return this.price * this.quantity;
   }

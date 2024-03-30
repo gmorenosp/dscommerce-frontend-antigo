@@ -17,9 +17,7 @@ type QueryParams = {
 }
 
 export default function ProductListing() {
-
     const navigate = useNavigate();
-
     const [dialogInfoData, setDialogInfoData] = useState({
         visible: false,
         message: "Operação com sucesso!"
@@ -30,11 +28,8 @@ export default function ProductListing() {
         id: 0,
         message: "Tem certeza?"
     });
-
     const [isLastPage, setIsLastPage] = useState(false);
-
     const [products, setProducts] = useState<ProductDTO[]>([]);
-
     const [queryParams, setQueryParams] = useState<QueryParams>({
         page: 0,
         name: ""
@@ -80,8 +75,7 @@ export default function ProductListing() {
                 .then(() => {
                     setProducts([]);
                     setQueryParams({ ...queryParams, page: 0 });
-                })
-                .catch(error => {
+                }).catch(error => {
                     setDialogInfoData({
                         visible: true,
                         message: error.response.data.error

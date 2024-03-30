@@ -13,13 +13,9 @@ import { selectStyles } from '../../../utils/select';
 
 
 export default function ProductForm() {
-
     const params = useParams();
-
     const navigate = useNavigate();
-
     const isEditing = params.productId !== 'create';
-
     const [categories, setCategories] = useState<CategoryDTO[]>([]);
 
     const [formData, setFormData] = useState<any>({
@@ -107,7 +103,6 @@ export default function ProductForm() {
         if (forms.hasAnyInvalid(formDataValidated)) {
             setFormData(formDataValidated);
             return;
-            
         }
 
         const requestBody = forms.toValues(formData);
@@ -117,13 +112,12 @@ export default function ProductForm() {
 
         const request = isEditing
             ? productService.updateRequest(requestBody)
-            : productService.insertRequest(requestBody);
+            : productService.insertRequest(requestBody)
 
         request
             .then(() => {
                 navigate("/admin/products")
-            })
-            .catch(error => {
+            }).catch(error => {
                 const newInputs = forms.setBackendErros(formData, error.response.data.fieldMessages);
                 setFormData(newInputs);
             });

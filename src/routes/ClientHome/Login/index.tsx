@@ -2,18 +2,14 @@
 import './styles.css';
 import { useContext, useState } from 'react';
 import * as forms from '../../../utils/forms';
-import * as authService from '../../../services/auth-service';
+import * as authService from '../../../services/auth-service'
 import { useNavigate } from 'react-router-dom';
 import { ContextToken } from '../../../utils/context-token';
 import FormInput from '../../../components/FormInput';
 
-
 export default function Login() {
-
     const { setContextTokenPayload } = useContext(ContextToken);
-
     const [submitResponseFail, setSubmitResponseFail] = useState(false);
-
     const navigate = useNavigate();
 
     const [formData, setFormData] = useState<any>({
@@ -41,20 +37,17 @@ export default function Login() {
         event.preventDefault();
 
         setSubmitResponseFail(false);
-
         const formDataValidated = forms.dirtyAndValidateAll(formData);
         if (forms.hasAnyInvalid(formDataValidated)) {
             setFormData(formDataValidated);
             return;
         }
-        
         authService.loginRequest(forms.toValues(formData))
             .then(response => {
                 authService.saveAcessToken(response.data.access_token);
                 setContextTokenPayload(authService.getAccessTokenPayload());
                 navigate('/cart');
-            })
-            .catch(() => {
+            }).catch(() => {
                 setSubmitResponseFail(true)
             });
     }

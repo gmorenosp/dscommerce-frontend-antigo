@@ -1,5 +1,5 @@
 import "./styles.css";
-import { ProductDTO } from "../../models/product";
+import { ProductDTO } from "../../models/products";
 import { Link } from "react-router-dom";
 
 type Props = {
