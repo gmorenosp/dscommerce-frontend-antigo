@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable no-var */
 /* eslint-disable prefer-const */
 import QueryString from "qs";
@@ -77,3 +79,7 @@ export function hasAnyRoles(roles: RoleEnum[]): boolean {
   }
   return false;
 }
+export function saveAcessToken(access_token: any) {
+  throw new Error('Function not implemented.');
+}
+
